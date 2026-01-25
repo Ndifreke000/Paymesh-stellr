@@ -1,5 +1,3 @@
-#![cfg(test)]
-
 use crate::mock_token::{MockToken, MockTokenClient};
 use soroban_sdk::{testutils::Address as _, Address, Env, String};
 
@@ -8,7 +6,7 @@ fn test_mock_token() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, MockToken);
+    let contract_id = env.register(MockToken, ());
     let client = MockTokenClient::new(&env, &contract_id);
 
     let admin = Address::generate(&env);
